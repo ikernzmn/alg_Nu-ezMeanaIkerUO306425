@@ -68,8 +68,14 @@ public class PuntosDyV
         int de = matrizPuntos.length - 1;
 
         quickSortPorX();
+        //Arrays.sort(matrizPuntos, Comparator.compareDouble(matriz -> matriz[0]))
+        //coge la matriz y ordena por coordenada x 
 
         Object[] resultado = BuscarDistanciaMinimaRec(iz, de);
+
+        //AQUI GUARDAS LOS INDICES DE LA PRIMERA PARTICION Y ASI CALCULAS LA DISTANCIA DE LOS UNICOS PUNTOS
+        //QUE NO SE CALCULA. LUEGO LA COMPARAS CON LA DISTANCIA MINIMA QUE TE DA EL RECURSIVO Y YA ESTA
+
         double distanciaMinima = (Double) resultado[0];
         int i = (Integer) resultado[1];
         int j = (Integer) resultado[2];
@@ -137,6 +143,9 @@ public class PuntosDyV
         resultado2 = BuscarDistanciaMinimaRec(indiceParticion + 1, de);
 
         retorno = combinar(resultado1, resultado2);
+
+        //hacer una lista de puntos e ir almacenando los valores intermedios y luego comparar con la distancia minima
+        //combinar dentro del if del caso base
 
         return retorno;
     }
