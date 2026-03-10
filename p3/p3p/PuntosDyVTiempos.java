@@ -6,8 +6,11 @@ public class PuntosDyVTiempos
 {
     public static void main(String[] args)
     {
+        //String nombreFichero = args[0];
         long t1,t2;
         String[] resultado;
+
+        //PuntosDyV.leerFichero(nombreFichero);
         
 	    for (int i = 1024; i <= 10000000; i *= 2)
 	    {
@@ -15,7 +18,7 @@ public class PuntosDyVTiempos
 
             t1 = System.currentTimeMillis ();
 
-		    resultado = PuntosDyV.BuscarDistanciaMinima();
+		    resultado = PuntosDyV.buscarDistanciaMinima();
             System.out.println(resultado[0]);
             System.out.println(resultado[1]);
 		

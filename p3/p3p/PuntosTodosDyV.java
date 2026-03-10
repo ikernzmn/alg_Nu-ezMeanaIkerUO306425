@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class PuntosDyV {
+public class PuntosTodosDyV {
     static double[][] matrizPuntos;
     static int tamañoMatriz;
     static ArrayList<String> lineas = new ArrayList<String>();
@@ -88,8 +88,6 @@ public class PuntosDyV {
         Object[] retorno;
 
         int indiceParticion = (iz + de) / 2;
-        int indiceCritico1 = indiceParticion;
-        int indiceCritico2 = indiceParticion + 1;
 
         if (de == iz) {
             resultado[0] = minDistancia;
@@ -126,8 +124,10 @@ public class PuntosDyV {
         resultado2 = buscarDistanciaMinimaRec(indiceParticion + 1, de);
 
         retorno = combinar(resultado1, resultado2);
+        double distanciaMinima = (Double) retorno[0];
+        double puntoMedio = matrizPuntos[m][0];
 
-        retorno = comprobarPuntosCriticos(retorno, indiceCritico1, indiceCritico2);
+        gestionarPuntosCriticos(distanciaMinima, puntoMedio, iz, de);
 
         return retorno;
     }
@@ -143,21 +143,38 @@ public class PuntosDyV {
         return distancia1 < distancia2 ? resultado1 : resultado2;
     }
 
-    public static Object[] comprobarPuntosCriticos(Object[] resultadoProvisional, int indiceCritico1, int indiceCritico2) {
-        double x1 = matrizPuntos[indiceCritico1][0]; 
-        double y1 = matrizPuntos[indiceCritico1][1]; 
-        double x2 = matrizPuntos[indiceCritico2][0]; 
-        double y2 = matrizPuntos[indiceCritico2][1]; 
-        
-        double distancia = calcularDistancia(x1, y1, x2, y2);
-        double distanciaRecurs = (Double) resultadoProvisional[0]; 
-        if (distancia < distanciaRecurs) { 
-            resultadoProvisional[0] = distancia; 
-            resultadoProvisional[1] = indiceCritico1;
-            resultadoProvisional[2] = indiceCritico2; 
-        } 
-        
-        return resultadoProvisional;
+    private static void gestionarPuntosCriticos(double distanciaMinima, double puntoMedio, int iz, int de){
+        ArrayList<Integer> indicesCriticos = new ArrayList<Integer>();
+
+        for(int i = iz; i <= de; i++){
+            if(Math.abs(matrizPuntos[i][0] - puntoMedio) < distanciaMinima){
+                indicesCriticos.add(i);
+            }
+        }
+
+        indicesCriticos.sort((a,b) -> Double.compare(matrizPuntos[a][1], matrizPuntos[b][1]));
+
+        Object[] resultadoBueno = new Object[3];
+
+        for (int i = 0; i < indicesCriticos.size(); i++) {
+            for (int j = i + 1; j < indicesCriticos.size() && j <= i + 7; j++) {
+
+                int p1 = indicesCriticos.get(i);
+                int p2 = indicesCriticos.get(j);
+
+                double d = calcularDistancia(
+                    matrizPuntos[p1][0], matrizPuntos[p1][1],
+                    matrizPuntos[p2][0], matrizPuntos[p2][1]
+                );
+
+                if (d < distanciaMinima) {
+                    distanciaMinima = d;
+                    resultadoBueno[0] = d;
+                    resultadoBueno[1] = p1;
+                    resultadoBueno[2] = p2;
+                }
+            }
+        }
     }
 
     public static void quickSortPorX() {
