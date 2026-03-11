@@ -1,0 +1,11 @@
+package algstudent;
+
+public class ColoreoGrafo {
+
+    public Map<String, String> realizarVoraz(Map<String, List<String>> grafo){
+        String[] colours = {"red", "blue", "green", 
+        "yellow", "orange", "purple", "cyan", "magenta", "lime"}; 
+        
+        
+    }
+}
