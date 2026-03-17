@@ -107,31 +107,54 @@ def dibujar_mapa_coloreado(grafo, colores):
             edge_color='gray')
     plt.show()
 
+    
+def realizar_voraz(grafo):
+    colours = ["red", "blue", "green", 
+        "yellow", "orange", "purple", "cyan", "magenta", "lime"]
+    
+    result = {}
+    for nodo in grafo:
+        vecinos = grafo[nodo]
+        coloursUsed = []
 
+        for i in range(len(vecinos)):
+            nodoVecino = vecinos[i]
+
+            coloursUsed = {result[str(v)] for v in vecinos if str(v) in result}
+        
+        for j in range(len(colours)):
+            if(not(colours[j] in coloursUsed)):
+                result[nodo] = colours[j]
+                break
+    
+    return result
+
+"""
 if __name__ == "__main__":
 
     # Generar un mapa con 100 nodos
-    mapa = generar_mapa_grafo(100)
-    print(mapa)
+    # mapa = generar_mapa_grafo(100)
+    # print(mapa)
 
-    """
+    
     # Podemos cargar la información desde archivos JSON, si se prefiere generar la solución en Java.
-    with open('sols/graph.json') as f:
+    with open('sols/g8.json') as f:
         mapa = json.load(f)
         f.close()
-        
+   
     with open('sols/solucion.json') as f:
         colores_nodos = json.load(f)
         f.close()
-    """
+   
     colores_nodos = {}
     for nodo in mapa["grafo"].keys():
         colores_nodos[nodo] = "red"
     # Visualizar el mapa
-    dibujar_mapa_coloreado(mapa, colores_nodos)
+    #dibujar_mapa_coloreado(mapa, colores_nodos)
 
     # Mostrar información del grafo
     print(f"Número de nodos: {len(mapa['nodos'])}")
     print(f"Conexiones:")
     for nodo, vecinos in mapa["grafo"].items():
         print(f"  Nodo {nodo}: conectado con {vecinos}")
+"""
