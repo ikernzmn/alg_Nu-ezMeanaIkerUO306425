@@ -27,7 +27,7 @@ public class AlmacenajeContenedores {
         this.setsFlag = new boolean[setsS.length];
 
         // Descendant order
-        Arrays.sort(setsS, (a, b) -> b - a);
+        // Arrays.sort(setsS, (a, b) -> b - a);
 
         this.bestDistribution = new ArrayList<ArrayList<Integer>>();
         bestK = setsS.length; // Initializes to the worst case
@@ -72,18 +72,19 @@ public class AlmacenajeContenedores {
             Integer thisK = distribution.size();
             if (thisK < bestK) {
                 copySolution(distribution);
-                return;
             }
+            return;
         }
 
         // Pruning: if current size es greater or equal than best one, recursive call
         // ends
-        if (distribution.size() >= bestK) {
-            // stops the execution
-            return;
-        }
+        // if (distribution.size() >= bestK) {
+        //     // stops the execution
+        //     return;
+        // }
 
-        for (int pos = 0; pos < distribution.size(); pos++) {
+        int size = distribution.size();
+        for (int pos = 0; pos < size; pos++) {
             // tries to add it to an existant container
             if (!setsFlag[indexS] && sum(distribution.get(pos)) + setsS[indexS] <= capacityC) {
                 distribution.get(pos).add(setsS[indexS]);
@@ -100,12 +101,11 @@ public class AlmacenajeContenedores {
         ArrayList<Integer> newContainer = new ArrayList<Integer>();
         newContainer.add(setsS[indexS]);
         setsFlag[indexS] = true;
-        int indexNewInsertion = distribution.size();
         distribution.add(newContainer);
         backtracking(indexS + 1, distribution);
         setsFlag[indexS] = false;
         if (distribution.size() != 0) {
-            distribution.get(indexNewInsertion).removeLast();
+            distribution.remove(distribution.size() - 1);
         }
     }
 

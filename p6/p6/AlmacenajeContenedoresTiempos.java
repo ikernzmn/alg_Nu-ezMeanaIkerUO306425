@@ -16,9 +16,9 @@ public class AlmacenajeContenedoresTiempos {
             String[] argsMain = { nombreFichero };
 
             t1 = System.nanoTime();
-            for(int j = 10; j < 1000; j++){
-                AlmacenajeContenedores.main(argsMain);
-            }
+            
+            AlmacenajeContenedores.main(argsMain);
+            
             t2 = System.nanoTime();
             tResultado = (t2 - t1) / 1_000_000.0;
 
