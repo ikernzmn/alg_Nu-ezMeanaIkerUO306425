@@ -1,3 +1,5 @@
+package p6Extra;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,16 +62,6 @@ public class NReinas {
             int d2 = fila + col;           // Diagonal secundaria (/)
 
             // 1. Avanzar -> Colocar la reina (meter un 'Q') y marcar la columna y diagonales como atacadas
-            // if(!columnas[col] || !diagonalesPrincipales[d1] || !diagonalesSecundarias[d2]){
-            //     //si no hay reina ni en esa columna, ni en ninguna de las diagonales
-            //     columnas[col] = true;
-            //     diagonalesPrincipales[d1] = true;
-            //     diagonalesSecundarias[d2] = true;
-            //     tablero[fila][col] = 'Q';
-            // } else{
-            //     continue;
-            // }
-
             if(columnas[col] || diagonalesPrincipales[d1] || diagonalesSecundarias[d2]){
                 continue;
             }
