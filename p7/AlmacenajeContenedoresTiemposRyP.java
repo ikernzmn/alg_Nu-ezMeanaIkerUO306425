@@ -16,9 +16,7 @@ public class AlmacenajeContenedoresTiemposRyP {
             String[] argsMain = { nombreFichero };
 
             t1 = System.nanoTime();
-            for(int j = 10; j < 1000; j++){
-                AlmacenajeContenedoresRyP.main(argsMain);
-            }
+            AlmacenajeContenedoresRyP.main(argsMain);
             t2 = System.nanoTime();
             tResultado = (t2 - t1) / 1_000_000.0;
 

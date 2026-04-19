@@ -89,7 +89,9 @@ public class AlmacenajeContenedores {
             if (!setsFlag[indexS] && sum(distribution.get(pos)) + setsS[indexS] <= capacityC) {
                 distribution.get(pos).add(setsS[indexS]);
                 setsFlag[indexS] = true;
+
                 backtracking(indexS + 1, distribution);
+                
                 setsFlag[indexS] = false;
                 if (distribution.size() != 0) {
                     distribution.get(pos).removeLast();
@@ -102,7 +104,9 @@ public class AlmacenajeContenedores {
         newContainer.add(setsS[indexS]);
         setsFlag[indexS] = true;
         distribution.add(newContainer);
+
         backtracking(indexS + 1, distribution);
+
         setsFlag[indexS] = false;
         if (distribution.size() != 0) {
             distribution.remove(distribution.size() - 1);
