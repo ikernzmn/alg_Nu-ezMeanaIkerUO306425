@@ -35,8 +35,8 @@ public class AlmacenajeContenedoresRyP {
     public static void main(String[] args) {
         Scanner sc;
         try {
-            sc = new Scanner(new FileReader(args[0]));
-            // sc = new Scanner(new FileReader("test02.txt"));
+            // sc = new Scanner(new FileReader(args[0]));
+            sc = new Scanner(new FileReader("p7/test02.txt"));
             int capacityC = Integer.parseInt(sc.nextLine());
             String[] parts = sc.nextLine().split(" ");
             Integer[] setsS = new Integer[parts.length];
@@ -174,50 +174,50 @@ public class AlmacenajeContenedoresRyP {
     // Prints the solution: Containers distribution and number of containers
     // required
     public void logSolution() {
-        // BufferedWriter bf = null;
-        // try {
-        //     bf = new BufferedWriter(new FileWriter("result.txt"));
+        BufferedWriter bf = null;
+        try {
+            bf = new BufferedWriter(new FileWriter("result.txt"));
 
-        //     bf.write("Lista de contenedores y objetos contenidos:\n");
+            bf.write("Lista de contenedores y objetos contenidos:\n");
 
-        //     for (int i = 0; i < bestDistribution.size(); i++) {
-        //         bf.write("Contenedor " + i + ": ");
-        //         for (int j = 0; j < bestDistribution.get(i).size(); j++) {
-        //             bf.write(bestDistribution.get(i).get(j) + " ");
-        //         }
-        //         bf.write("\n");
-        //     }
-
-        //     bf.write("El numero de contenedores necesarios es: " + bestK + "\n");
-        //     bf.write("Se necesitaron " + numberOfRecCalls + " llamadas recursivas.\n");
-        // } catch (IOException ioe) {
-        //     System.out.println("No se pudo abrir el fichero de log");
-        // } finally{
-        //     try{
-        //         if(bf != null) {
-        //             bf.close();
-        //         }
-        //     } catch(IOException ioe){
-        //         System.out.println("Error: No se pudo cerrar el archivo");
-        //     }   
-        // }
-
-        System.out.println("Lista de contenedores y objetos contenidos: ");
-        for (int i = 0; i < bestDistribution.size(); i++) {
-            System.out.printf("Contenedor %d: ", i);
-            for (int j = 0; j < bestDistribution.get(i).size(); j++) {
-                if (j == bestDistribution.get(i).size() - 1) {
-                    System.out.printf("%d ", bestDistribution.get(i).get(j));
-                    System.out.println();
-                } else {
-                    System.out.printf("%d ", bestDistribution.get(i).get(j));
+            for (int i = 0; i < bestDistribution.size(); i++) {
+                bf.write("Contenedor " + i + ": ");
+                for (int j = 0; j < bestDistribution.get(i).size(); j++) {
+                    bf.write(bestDistribution.get(i).get(j) + " ");
                 }
+                bf.write("\n");
             }
+
+            bf.write("El numero de contenedores necesarios es: " + bestK + "\n");
+            bf.write("Se necesitaron " + numberOfRecCalls + " llamadas recursivas.\n");
+        } catch (IOException ioe) {
+            System.out.println("No se pudo abrir el fichero de log");
+        } finally{
+            try{
+                if(bf != null) {
+                    bf.close();
+                }
+            } catch(IOException ioe){
+                System.out.println("Error: No se pudo cerrar el archivo");
+            }   
         }
 
-        System.out.printf("El numero de contenedores necesarios es: %d", bestK);
-        System.out.println();
-        System.out.printf("Se necesitaron %d llamadas recursivas para resolver el problema.", numberOfRecCalls);
-        System.out.println();
+        // System.out.println("Lista de contenedores y objetos contenidos: ");
+        // for (int i = 0; i < bestDistribution.size(); i++) {
+        //     System.out.printf("Contenedor %d: ", i);
+        //     for (int j = 0; j < bestDistribution.get(i).size(); j++) {
+        //         if (j == bestDistribution.get(i).size() - 1) {
+        //             System.out.printf("%d ", bestDistribution.get(i).get(j));
+        //             System.out.println();
+        //         } else {
+        //             System.out.printf("%d ", bestDistribution.get(i).get(j));
+        //         }
+        //     }
+        // }
+
+        // System.out.printf("El numero de contenedores necesarios es: %d", bestK);
+        // System.out.println();
+        // System.out.printf("Se necesitaron %d llamadas recursivas para resolver el problema.", numberOfRecCalls);
+        // System.out.println();
     }
 }
